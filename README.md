@@ -32,6 +32,45 @@ For full architecture diagrams, data flows, and component interactions, see [ARC
 
 ---
 
+## Inputs, Sources & Assumptions
+
+### Inputs
+- **Employee request ID**: Unique identifier for the incoming request (`REQ-01` through `REQ-15`).
+- **Employee name/email**: Identity and corporate email address of the requesting employee.
+- **Original IT support request**: Natural-language text submitted by the employee describing their technical inquiry or problem.
+- **Optional follow-up information supplied by the employee**: Additional clarifying details provided by the employee in response to diagnostic questions (e.g., employment contract status, symptoms).
+- **Historical ticket records used only for precedent/reference context**: Past support tickets (`TK-1042` through `TK-1051`) referenced to check for previous resolutions or similar inquiries.
+
+### Sources
+- **KB-01 through KB-10 from the Assignment 2 data pack**:
+  - `KB-01`: Password Reset
+  - `KB-02`: VPN Access
+  - `KB-03`: Laptop Replacement
+  - `KB-04`: Software Installation Requests
+  - `KB-05`: Printer Troubleshooting
+  - `KB-06`: Email Mailbox Quota
+  - `KB-07`: Guest Wi-Fi Access
+  - `KB-08`: Expense Software Access
+  - `KB-09`: Security Incident Reporting
+  - `KB-10`: Work-From-Home Equipment
+- **Asset Management Policy**: Corporate policy extract from Finance & Assets establishing a standard 4-year hardware refresh cycle and requiring Finance sign-off for early replacement.
+- **Employee requests REQ-01 through REQ-15**: 15 benchmark workplace requests from the assignment pack used for testing and validation.
+- **Historical ticket records TK-1042 through TK-1051**: 10 historical support records from the corporate ticket archive.
+
+### Assumptions & Guardrails
+1. **Supplied Data as Single Source of Truth**: The agent uses only the supplied Veridian assignment data as its policy/source-of-truth material.
+2. **Mandatory Policy Grounding**: When a decision is grounded in a policy, the relevant policy ID is shown as a source.
+3. **Reference-Only Precedents**: Historical tickets are reference precedents only; they are not treated as the current employee's ticket.
+4. **Closed Historical Records**: Closed historical tickets remain available for history/reference but are not treated as actionable work.
+5. **No Guessing on Incomplete Requests**: If required information is missing or the request is too vague, the agent asks a follow-up question rather than guessing.
+6. **Safety-First Escalation**: Security-sensitive, risky, or unclear requests are escalated instead of being automatically approved.
+7. **Prototype Scope**: The prototype is not connected to a live enterprise ticketing system.
+8. **No Fabricated SLAs**: Do not invent SLA values because the assignment data pack does not provide SLA information.
+9. **Hardware Lifecycle Reconciliation**: For laptop lifecycle decisions, the Asset Management Policy is considered alongside KB-03 where relevant.
+10. **Structured Ticket Creation**: The agent creates a structured ticket record for the interaction; escalation tickets are persisted in the prototype's ticket file (`tickets_created.json`).
+
+---
+
 ## 3. Setup and Installation
 
 ### Prerequisites

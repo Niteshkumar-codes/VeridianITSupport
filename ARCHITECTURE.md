@@ -138,13 +138,19 @@ Used when policy or safety guardrails prohibit automated resolution and require 
 
 ---
 
-## 4. Data Sources
+## 4. Inputs, Sources & Assumptions
 
-The project strictly separates immutable benchmark data from mutable runtime data.
+The project strictly adheres to the authoritative Assignment 2 data pack and separates immutable input sources from mutable runtime data.
 
-### Supplied Benchmark Data (`data.py`)
-All facts, policies, and test requests originate exclusively from the assignment pack:
-- **11 Corporate Policies**:
+### Inputs
+- **Employee Request ID**: Unique identifier for the incoming request (`REQ-01` through `REQ-15`).
+- **Employee Name/Email**: Identifier and corporate email address of the requesting employee.
+- **Original IT Support Request**: Free-text description of the technical issue or inquiry in normal workplace language.
+- **Optional Follow-up Information Supplied by the Employee**: Additional clarifying details provided by the employee in response to diagnostic questions (e.g., employment contract status, symptoms).
+- **Historical Ticket Records Used Only for Precedent/Reference Context**: Past support tickets (`TK-1042` through `TK-1051`) referenced to check for previous resolutions or similar inquiries.
+
+### Sources
+- **KB-01 through KB-10 from the Assignment 2 Data Pack**:
   - `KB-01`: Password Reset (5 failed attempts locks account; IT unlocks manually; no approval required).
   - `KB-02`: VPN Access (Full-time employees auto-renew; contractors require manager approval form).
   - `KB-03`: Laptop Replacement (Eligible after 3 years or earlier for verified hardware failure; requires 2 weeks advance notice).
@@ -155,9 +161,21 @@ All facts, policies, and test requests originate exclusively from the assignment
   - `KB-08`: Expense Software Access (Finance grants accounts; IT only troubleshoots existing accounts).
   - `KB-09`: Security Incident Reporting (Phishing/malware routed immediately to Security; do not redistribute message).
   - `KB-10`: Work-From-Home Equipment (>3 days/week remote eligible for allowance; requires manager sign-off and Finance).
-  - `ASSET`: Asset Management Policy Extract (4-year refresh cycle; early replacement requires Finance sign-off).
-- **15 Benchmark Employee Requests (`REQ-01` to `REQ-15`)**: Realistic internal employee requests spanning all 11 policies, edge cases, and underspecified queries.
-- **10 Historical Tickets (`TK-1042` to `TK-1051`)**: Representative past tickets used to provide similarity context and historical awareness.
+- **Asset Management Policy**: Corporate policy extract from Finance & Assets establishing a standard 4-year hardware refresh cycle and requiring Finance sign-off for early replacement.
+- **Employee Requests REQ-01 through REQ-15**: 15 benchmark workplace requests from the assignment pack used for testing and validation.
+- **Historical Ticket Records TK-1042 through TK-1051**: 10 historical support records from the corporate ticket archive.
+
+### Assumptions & Guardrails
+1. The agent uses only the supplied Veridian assignment data as its policy/source-of-truth material.
+2. When a decision is grounded in a policy, the relevant policy ID is shown as a source.
+3. Historical tickets are reference precedents only; they are not treated as the current employee's ticket.
+4. Closed historical tickets remain available for history/reference but are not treated as actionable work.
+5. If required information is missing or the request is too vague, the agent asks a follow-up question rather than guessing.
+6. Security-sensitive, risky, or unclear requests are escalated instead of being automatically approved.
+7. The prototype is not connected to a live enterprise ticketing system.
+8. Do not invent SLA values because the assignment data pack does not provide SLA information.
+9. For laptop lifecycle decisions, the Asset Management Policy is considered alongside KB-03 where relevant.
+10. The agent creates a structured ticket record for the interaction; escalation tickets are persisted in the prototype's ticket file.
 
 ### Runtime-Generated Data (Local Persistence)
 - **`audit_log.json`**: An append-only JSON array recording all actions, policy searches, follow-up interactions, and triage decisions.
