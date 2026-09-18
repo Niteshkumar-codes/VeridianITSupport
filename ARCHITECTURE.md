@@ -205,17 +205,18 @@ The application enforces deterministic guardrails that execute before and after 
 
 ---
 
-## 6. AI & Automation Approach
+## 6. AI Tools & Development Approach
 
-The application uses a **deterministic-first, LLM-enhanced hybrid architecture**:
+The prototype was developed using an agent-assisted engineering workflow, combining deterministic policy grounding with thorough human validation:
 
-- **Deterministic Policy-Grounded Engine (Primary / Demo Path)**:
-  - Executes rule-based policy matching, keyword extraction, and safety guardrails.
-  - Requires **zero external dependencies or API keys** (`Active • Policy-Grounded Engine`).
-  - Guarantees 100% reproducible, compliant outcomes across all 15 benchmark test cases.
-- **Optional Gemini Integration**:
-  - When a `GEMINI_API_KEY` is provided in `.env`, the agent can invoke Google Gemini (`gemini-2.5-flash`) for natural language summarization.
-  - **Hard Safety Normalization**: Even if Gemini is invoked, the deterministic guardrail layer runs as a post-processor. If an LLM response attempts to violate policy or self-approve a risky action, the guardrail overrides the output to `escalate`.
+- **Google Antigravity**: Agent-assisted development environment, implementation iteration, debugging, and test validation.
+- **ChatGPT**: Solution planning, reasoning support, documentation, and review assistance.
+- **Human Validation**: Final implementation systematically checked and verified against the supplied assignment data pack and benchmark requests (15/15 policy tests passing).
+
+### System Runtime Architecture
+- **Deterministic Policy-Grounded Engine (Primary / Demo Path)**: Executes rule-based policy matching, keyword extraction, and safety guardrails with zero external dependencies or API keys (`Active • Policy-Grounded Engine`). Guarantees 100% reproducible, compliant outcomes across all 15 benchmark test cases.
+- **Optional Gemini Integration**: When a `GEMINI_API_KEY` is provided in `.env`, the agent can invoke Google Gemini (`gemini-2.5-flash`) for natural language summarization.
+- **Hard Safety Normalization**: Even if Gemini is invoked, the deterministic guardrail layer runs as a post-processor. If an LLM response attempts to violate policy or self-approve a risky action, the guardrail overrides the output to `escalate`.
 - **System Scope**: The system is designed as an internal assistance and triage prototype, not an autonomous agent or production ITSM platform.
 
 ---

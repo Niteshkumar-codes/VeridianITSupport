@@ -163,8 +163,32 @@ For comprehensive test details and expected behaviors, see [TEST_CASES.md](TEST_
 
 ---
 
-## 8. AI Tools Disclosure
+## AI Tools Used & How
 
-In accordance with academic and assessment integrity guidelines:
-- Large Language Models (including Google Antigravity / Gemini) were utilized as assistive coding and pair-programming agents to aid in drafting code, writing automated tests, refining UI styling, and compiling documentation.
-- All final architecture decisions, guardrail boundaries, and test validation were verified directly against the Veridian Corp assignment requirements.
+### 1. Google Antigravity
+**Purpose:**
+- Used as the primary development environment/agent-assisted coding workspace.
+- Used to implement and refine the Streamlit application.
+- Used to organize the project files and development workflow.
+- Used to run and validate the application and tests.
+- Used to help inspect implementation issues and iterate on the prototype.
+
+### 2. ChatGPT
+**Purpose:**
+- Used as a development assistant for planning the solution architecture and workflow.
+- Used to help translate the assignment requirements into implementation tasks.
+- Used to review logic, identify edge cases, and suggest improvements.
+- Used to help prepare documentation, testing scenarios, and presentation/demo material.
+
+### 3. Human Review & Validation
+The final implementation was reviewed and validated against the authoritative Assignment 2 data pack:
+- The agent is grounded in the supplied `KB-01` to `KB-10` policies and Asset Management Policy.
+- The `REQ-01` to `REQ-15` employee requests were used as the benchmark test set.
+- Historical tickets `TK-1042` through `TK-1051` were used for precedent/reference context.
+- The implementation was tested with the 15 benchmark requests.
+- Current validation result is **15/15 policy tests passing**.
+- Precedent validation includes `REQ-03` → `TK-1049` and `REQ-10` → `TK-1050`.
+- Streamlit UI validation was also performed.
+
+### 4. AI Disclosure
+AI tools were used during development of this prototype. Google Antigravity and ChatGPT assisted with implementation planning, coding iteration, debugging/review, testing preparation, and documentation. The final project was reviewed and validated against the assignment's authoritative data pack and requirements.
