@@ -85,7 +85,7 @@ TICKETS = [
     {"id":"TK-1046","employee":"M. Das","issue":"Printer paper jam, floor 2","status":"Resolved (closed)"},
     {"id":"TK-1047","employee":"K. Singh","issue":"Home office equipment request","status":"Pending Finance (active)"},
     {"id":"TK-1048","employee":"T. Rao","issue":"Phishing email reported","status":"Escalated to Security — under investigation (active)"},
-    {"id":"TK-1049","employee":"J. Fernandes","issue":"Password reset","status":"Resolved (closed)"},
-    {"id":"TK-1050","employee":"L. Menon","issue":"Admin access request","status":"Rejected — no business justification (closed)"},
-    {"id":"TK-1051","employee":"V. Nambiar","issue":"Guest Wi-Fi issued","status":"Resolved (closed)"}
+    {"id":"TK-1049","employee":"V. Nambiar","issue":"Password reset","status":"Resolved (closed)"},
+    {"id":"TK-1050","employee":"J. Fernandes","issue":"Admin access request","status":"Rejected — no business justification provided (closed)"},
+    {"id":"TK-1051","employee":"L. Menon","issue":"Guest Wi-Fi issued","status":"Resolved (closed)"}
 ]
